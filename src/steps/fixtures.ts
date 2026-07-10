@@ -3,6 +3,9 @@ import { LoginPage } from '../pages/LoginPage';
 import {RegisterPage} from '../pages/RegisterPage';
 import { UserData } from '../utils/dataGenerator';
 import { APIResponse } from '@playwright/test';
+import {AccountsOverviewPage} from '../pages/AccountsOverviewPage';
+import {OpenAccountPage} from '../pages/OpenAccountPage';
+import {TransferFundsPage} from '../pages/TransferFundsPage';
 
 
 export interface ScenarioContext{
@@ -16,6 +19,9 @@ interface Fixtures {
     loginPage: LoginPage;
     registerPage: RegisterPage;
     ctx: ScenarioContext;
+    overviewPage: AccountsOverviewPage;
+    openAccountPage: OpenAccountPage;
+    transferPage: TransferFundsPage;
 }
 
 export const test = base.extend<Fixtures>({
@@ -27,6 +33,15 @@ export const test = base.extend<Fixtures>({
     },
     ctx:async({}, use)=>{
         await use ({});
+    },
+      overviewPage: async ({ page }, use) => {
+    await use(new AccountsOverviewPage(page));
+    },
+    openAccountPage: async ({ page }, use) => {
+        await use(new OpenAccountPage(page));
+    },
+    transferPage: async ({ page }, use) => {
+        await use(new TransferFundsPage(page));
     },
 });
 
