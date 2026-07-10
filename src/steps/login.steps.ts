@@ -12,8 +12,16 @@ When(
     },
 );
 
+When('inicio sesión con mis credenciales válidas', async ({ loginPage, ctx }) => {
+  await loginPage.login(ctx.user!.username, ctx.user!.password);
+});
+
 When('envío el formulario de inicio de sesión sin completar los campos', async ({loginPage}) =>{
     await loginPage.submitEmpty();
+});
+
+Then('veo el resumen de mis cuentas', async ({ loginPage }) => {
+  await expect(loginPage.accountsOverviewTitle).toBeVisible();
 });
 
 Then('veo un mensaje de error de autenticación', async ({loginPage}) => {

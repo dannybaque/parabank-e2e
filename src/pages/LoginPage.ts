@@ -6,6 +6,7 @@ export class LoginPage extends BasePage{
     readonly passwordInput: Locator;
     readonly loginButton: Locator;
     readonly errorMessage: Locator;
+    readonly accountsOverviewTitle: Locator;
     
     constructor(page: Page){
         super(page);
@@ -13,6 +14,7 @@ export class LoginPage extends BasePage{
         this.passwordInput = page.locator('input[name="password"]');
         this.loginButton = page.locator('input[value="Log In"]');
         this.errorMessage = page.locator('#rightPanel .error');
+        this.accountsOverviewTitle = page.getByRole('heading', { name: 'Accounts Overview' });
     }
 
     async open(): Promise<void>{
