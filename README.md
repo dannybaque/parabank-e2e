@@ -17,9 +17,9 @@ Automatiza los flujos solicitados sobre el portal bancario de demostración [Par
 
 ## Supuestos y decisiones de diseño
 
-1. **"API" vs. portal web.** La consigna indica "considere como SUT la API" pero el enlace corresponde al portal web. Se interpretó como una prueba **híbrida**: los flujos con interfaz web (registro, login, transferencia) se automatizan por **UI**, y el retiro se automatiza por **API REST**.
+1. **"API" vs. portal web.** La consigna indica "considere como SUT la API" pero el enlace corresponde al portal web. Se implementó como una prueba **híbrida**: los flujos con interfaz web (registro, login, transferencia) se automatizan por **UI**, y el retiro se automatiza por **API REST**.
 
-2. **El retiro no existe como página web.** En ParaBank, "Withdraw Funds" figura únicamente como servicio ATM expuesto por API (WSDL/REST), no como página navegable. Por ello el retiro se implementa contra la API REST oficial (`POST /parabank/services/bank/withdraw`), verificando además el saldo con `GET /parabank/services/bank/accounts/{id}`.
+2. **El retiro no existe como página web.** En ParaBank, "Withdraw Funds" figura únicamente como servicio ATM expuesto por API (REST), no como página navegable. Por ello el retiro se implementa contra la API REST oficial (`POST /parabank/services/bank/withdraw`), verificando además el saldo con `GET /parabank/services/bank/accounts/{id}`.
 
 3. **Datos de prueba dinámicos.** ParaBank es un entorno público compartido cuya base de datos se reinicia periódicamente. Cada escenario **crea su propio usuario** con datos únicos (timestamp + componente aleatorio), garantizando independencia y repetibilidad sin datos precargados.
 
