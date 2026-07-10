@@ -1,0 +1,39 @@
+name: E2E Tests - ParaBank
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  e2e:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - name: Checkout del repositorio
+        uses: actions/checkout@v4
+
+      - name: Configurar Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Instalar dependencias
+        run: npm ci
+
+      - name: Instalar navegador Chromium
+        run: npx playwright install --with-deps chromium
+
+      - name: Ejecutar suite E2E
+        run: npm test
+
+      - name: Publicar reportes (HTML + JSON)
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: reportes-e2e
+          path: reports/
+          retention-days: 15
