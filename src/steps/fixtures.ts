@@ -6,6 +6,7 @@ import { APIResponse } from '@playwright/test';
 import {AccountsOverviewPage} from '../pages/AccountsOverviewPage';
 import {OpenAccountPage} from '../pages/OpenAccountPage';
 import {TransferFundsPage} from '../pages/TransferFundsPage';
+import { BankApiClient } from '../api/BankApiClient';
 
 
 export interface ScenarioContext{
@@ -22,6 +23,7 @@ interface Fixtures {
     overviewPage: AccountsOverviewPage;
     openAccountPage: OpenAccountPage;
     transferPage: TransferFundsPage;
+    bankApi: BankApiClient;
 }
 
 export const test = base.extend<Fixtures>({
@@ -42,6 +44,9 @@ export const test = base.extend<Fixtures>({
     },
     transferPage: async ({ page }, use) => {
         await use(new TransferFundsPage(page));
+    },
+    bankApi: async ({ request }, use) => {
+        await use(new BankApiClient(request));
     },
 });
 
