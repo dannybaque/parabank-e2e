@@ -39,7 +39,7 @@ En un entorno real se reportaría como defecto. Para la suite se optó por no au
 
 Patrón **Page Object Model (POM)** con clase base, capa de steps BDD delgada y un cliente de API dedicado, con inyección de dependencias mediante *fixtures* de Playwright:
 
-​```
+
 features/                  # Casos de prueba en Gherkin (español)
 src/
   pages/                   # Page Objects (selectores y acciones de UI)
@@ -60,7 +60,7 @@ src/
 .github/workflows/
   e2e-tests.yml            # Pipeline CI con publicación de reportes
 playwright.config.ts       # Configuración: BDD, reportería, timeouts
-​```
+
 
 Principios: separación de responsabilidades por capas, steps sin lógica de UI (solo orquestan Page Objects y aserciones), selectores centralizados, estado de escenario tipado (`ScenarioContext`) compartido vía fixture, y tipado estricto de TypeScript.
 
@@ -85,7 +85,7 @@ Técnicas aplicadas: partición de equivalencias (credenciales válidas/inválid
 
 ## Instalación paso a paso
 
-​```bash
+bash
 # 1. Clonar el repositorio (o descomprimir el .zip)
 git clone <url-del-repositorio>
 cd parabank-e2e
@@ -95,17 +95,17 @@ npm install
 
 # 3. Instalar el navegador de Playwright
 npx playwright install chromium
-​```
+
 
 ## Ejecución
 
-​```bash
+bash
 # Suite completa (genera specs desde los .feature y corre los tests)
 npm test
 
 # Abrir el reporte HTML
 npm run report
-​```
+
 
 ## Reportes
 
