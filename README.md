@@ -67,6 +67,8 @@ Principios: separación de responsabilidades por capas, steps sin lógica de UI 
 
 | Funcionalidad | Escenario | Tipo |
 |---|---|---|
+| Registro | Registro exitoso con datos válidos y únicos | Positivo · UI |
+| Registro | Nombre de usuario duplicado es rechazado | Negativo · UI |
 | Login | Credenciales válidas acceden al resumen de cuentas | Positivo · UI |
 | Login | Credenciales inválidas muestran error | Negativo · UI |
 | Login | Campos vacíos muestran validación | Negativo · UI |
